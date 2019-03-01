@@ -86,6 +86,12 @@
       <groupId>com.checkmarx</groupId>
       <artifactId>cx-client-common</artifactId>
       <version>8.80.5-snapshot</version>
+      <exclusions>
+      	<exclusion>
+          <groupId>org.whitesource</groupId>
+          <artifactId>whitesource-fs-agent</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <!-- for Mojo execution -->
     <dependency>
