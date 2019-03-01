@@ -85,7 +85,18 @@
     <dependency>
       <groupId>com.checkmarx</groupId>
       <artifactId>cx-client-common</artifactId>
-      <version>8.80.2</version>
+      <version>8.80.5-snapshot</version>
+    </dependency>
+    <!-- for Mojo execution -->
+    <dependency>
+      <groupId>org.twdata.maven</groupId>
+      <artifactId>mojo-executor</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>3.0.0</version>
     </dependency>
   </dependencies>
   <distributionManagement>
@@ -125,10 +136,30 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/assembly/assembly.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <!-- bind to the packaging phase -->
+            <phase>package</phase> 
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -207,6 +238,18 @@
   </profiles>
   <developers>
     <developer>
+      <name>Randy Geyer</name>
+      <email>randy@checkmarx.com</email>
+      <organization>Checkmarx</organization>
+      <organizationUrl>https://www.checkmarx.com/</organizationUrl>
+      <roles>
+        <role>Solution Architect</role>
+        <role>Developer</role>
+      </roles>
+      <properties>
+      </properties>
+    </developer>
+    <developer>
       <name>Dor Golan</name>
       <email>dor.golan@checkmarx.com</email>
       <organization>Checkmarx</organization>
@@ -259,4 +302,10 @@
       </properties>
     </developer>
   </developers>
+  <repositories>
+    <repository>
+      <id>maven-central</id>
+      <url>http://central.maven.org/maven2/</url>
+    </repository>
+  </repositories>
 </project>
